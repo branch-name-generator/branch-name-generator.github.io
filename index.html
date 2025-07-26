@@ -130,73 +130,77 @@
   </footer>
 
   <script>
-    const issueNumberInput = document.getElementById('issue-number-input');
-    const issueNameInput = document.getElementById('issue-name-input');
-    const output = document.getElementById('git-branch-name-output');
+    {
+      const $issueNumber = document.getElementById("issue-number-input");
+      const $issueName = document.getElementById("issue-name-input");
+      const $output = document.getElementById("git-branch-name-output");
 
-    function slugify(text) {
-      return text
-        .toLowerCase()
-        .trim()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '')
-        .substring(0, 100);
+      function slugify(text) {
+        return text
+                .toLowerCase()
+                .trim()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/^-+|-+$/g, '')
+                .substring(0, 100);
+      }
+
+      function update() {
+        const number = $issueNumber.value.trim();
+        const name = $issueName.value.trim();
+        const slug = slugify(name);
+        const branch = number ? `${number}/${slug}` : slug;
+
+        $output.value = branch;
+
+        document.getElementById("code1").textContent = `git checkout -b ${branch}`;
+        document.getElementById("code2").textContent = `git checkout master && git pull && git checkout -b ${branch}`;
+        document.getElementById("code3").textContent = `git checkout main && git pull && git checkout -b ${branch}`;
+        document.getElementById("code4").textContent = `git commit -m "${number} ${name}" --allow-empty`;
+      }
+
+      function copyToClipboard(id, btn) {
+        const input = document.getElementById(id);
+        input.select();
+        input.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        showCopied(btn);
+      }
+
+      function copyCode(id, btn) {
+        const text = document.getElementById(id).textContent;
+        navigator.clipboard.writeText(text);
+        showCopied(btn);
+      }
+
+      function showCopied($btn) {
+        const original = $btn.textContent;
+        $btn.textContent = "Copied!";
+        $btn.disabled = true;
+        setTimeout(() => {
+          $btn.textContent = original;
+          $btn.disabled = false;
+        }, 1000);
+      }
+
+      $issueNumber.addEventListener("input", update);
+      $issueName.addEventListener("input", update);
+
+      function toggleTheme() {
+        const html = document.documentElement;
+        const current = html.getAttribute("data-theme");
+        const next = current === "light" ? "dark" : "light";
+        html.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+      }
+
+      {
+        const saved = localStorage.getItem("theme");
+        if (saved) {
+          document.documentElement.setAttribute("data-theme", saved);
+        }
+        update();
+      }
     }
-
-    function update() {
-      const number = issueNumberInput.value.trim();
-      const name = issueNameInput.value.trim();
-      const slug = slugify(name);
-      const branch = number ? `${number}/${slug}` : slug;
-
-      output.value = branch;
-
-      document.getElementById('code1').textContent = `git checkout -b ${branch}`;
-      document.getElementById('code2').textContent = `git checkout master && git pull && git checkout -b ${branch}`;
-      document.getElementById('code3').textContent = `git checkout main && git pull && git checkout -b ${branch}`;
-      document.getElementById('code4').textContent = `git commit -m "${number} ${name}" --allow-empty`;
-    }
-
-    function copyToClipboard(id, btn) {
-      const input = document.getElementById(id);
-      input.select();
-      input.setSelectionRange(0, 99999);
-      document.execCommand("copy");
-      showCopied(btn);
-    }
-
-    function copyCode(id, btn) {
-      const text = document.getElementById(id).textContent;
-      navigator.clipboard.writeText(text);
-      showCopied(btn);
-    }
-
-    function showCopied(btn) {
-      const original = btn.textContent;
-      btn.textContent = "Copied!";
-      btn.disabled = true;
-      setTimeout(() => {
-        btn.textContent = original;
-        btn.disabled = false;
-      }, 1000);
-    }
-
-    issueNumberInput.addEventListener('input', update);
-    issueNameInput.addEventListener('input', update);
-
-    function toggleTheme() {
-      const html = document.documentElement;
-      const current = html.getAttribute("data-theme");
-      const next = current === "light" ? "dark" : "light";
-      html.setAttribute("data-theme", next);
-      localStorage.setItem("theme", next);
-    }
-
-    (function () {
-      const saved = localStorage.getItem("theme");
-      if (saved) document.documentElement.setAttribute("data-theme", saved);
-      update();
-    })();
   </script>
 </body>
 </html>
