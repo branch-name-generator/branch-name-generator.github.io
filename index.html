@@ -118,7 +118,24 @@
       align-items: center;
       margin-bottom: 1rem;
     }
+    @media (min-width: 600px) {
+      .code-with-copy {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
   </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V41TC5DB0L"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-V41TC5DB0L');
+  </script>
 </head>
 <body>
   <div class="top-bar">
@@ -126,7 +143,7 @@
     <iframe src="https://ghbtns.com/github-btn.html?user=branch-name-generator&repo=branch-name-generator.github.io&type=star&count=true" frameborder="0" scrolling="0" width="150" height="20" title="GitHub"></iframe>
   </div>
 
-  <h1>Git Branch Name Online Generator</h1>
+  <h1>Git Branch Name Generator</h1>
   <p>Enter the issue number and task name to generate a valid Git branch name.</p>
 
   <label for="issue-number-input">Issue Number</label>
