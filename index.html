@@ -160,15 +160,15 @@
 
   <div class="code-block">
     <div class="code-with-copy">
-      <pre id="code1">git checkout -b </pre>
+      <pre id="code1">git switch -c </pre>
       <button class="button" onclick="copyCode('code1', this)">Copy</button>
     </div>
     <div class="code-with-copy">
-      <pre id="code2">git checkout master && git pull && git checkout -b </pre>
+      <pre id="code2">git switch main && git pull && git switch -c </pre>
       <button class="button" onclick="copyCode('code2', this)">Copy</button>
     </div>
     <div class="code-with-copy">
-      <pre id="code3">git checkout main && git pull && git checkout -b </pre>
+      <pre id="code3">git switch master && git pull && git switch -c </pre>
       <button class="button" onclick="copyCode('code3', this)">Copy</button>
     </div>
     <div class="code-with-copy">
@@ -204,9 +204,9 @@
 
         $output.value = branch;
 
-        document.getElementById("code1").textContent = `git checkout -b ${branch}`;
-        document.getElementById("code2").textContent = `git checkout master && git pull && git checkout -b ${branch}`;
-        document.getElementById("code3").textContent = `git checkout main && git pull && git checkout -b ${branch}`;
+        document.getElementById("code1").textContent = `git switch -c ${branch}`;
+        document.getElementById("code2").textContent = `git switch main && git pull && git switch -c ${branch}`;
+        document.getElementById("code3").textContent = `git switch master && git pull && git switch -c ${branch}`;
         document.getElementById("code4").textContent = `git commit -m "${number} ${name}" --allow-empty`;
       }
 
