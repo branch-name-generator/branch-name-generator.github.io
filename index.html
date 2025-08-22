@@ -196,18 +196,23 @@
                 .substring(0, 100);
       }
 
+      function prepareCommitMessage(number, name) {
+        return number && name ? `${number} ${name}` : number || name || "";
+      }
+
       function update() {
         const number = $issueNumber.value.trim();
         const name = $issueName.value.trim();
         const slug = slugify(name);
-        const branch = number ? `${number}/${slug}` : slug;
+        const branch = number ? `${number.split(" ").join("/")}/${slug}` : slug;
+        const commitMessage = prepareCommitMessage(number, name.replace(/"/g, '\\"'));
 
         $output.value = branch;
 
         document.getElementById("code1").textContent = `git switch -c ${branch}`;
         document.getElementById("code2").textContent = `git switch main && git pull && git switch -c ${branch}`;
         document.getElementById("code3").textContent = `git switch master && git pull && git switch -c ${branch}`;
-        document.getElementById("code4").textContent = `git commit -m "${number} ${name}" --allow-empty`;
+        document.getElementById("code4").textContent = `git commit -m "${commitMessage}" --allow-empty`;
       }
 
       function copyToClipboard(id, btn) {
