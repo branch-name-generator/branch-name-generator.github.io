@@ -142,6 +142,7 @@ export function buildCommands({ base, branch, message }) {
   const create = branchOk ? `git switch -c ${branch}` : "";
   const switchTo = branchOk ? `git switch ${branch}` : "";
   const commit = message ? `git commit -m ${shellQuote(message)} --allow-empty` : "";
-  const all = baseOk && branchOk && message ? `${update} && ${create} && ${commit}` : "";
-  return { update, create, switchTo, commit, all };
+  const push = branchOk ? `git push -u origin ${branch}` : "";
+  const all = baseOk && branchOk && message ? `${update} && ${create} && ${commit} && ${push}` : "";
+  return { update, create, switchTo, commit, push, all };
 }
