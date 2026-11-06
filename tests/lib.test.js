@@ -105,7 +105,8 @@ test("buildCommands", () => {
   assert.equal(c.create, "git switch -c 1/fix");
   assert.equal(c.switchTo, "git switch 1/fix");
   assert.equal(c.commit, "git commit -m '1 Fix' --allow-empty");
-  assert.equal(c.all, "git switch main && git pull && git switch -c 1/fix && git commit -m '1 Fix' --allow-empty");
+  assert.equal(c.push, "git push -u origin 1/fix");
+  assert.equal(c.all, "git switch main && git pull && git switch -c 1/fix && git commit -m '1 Fix' --allow-empty && git push -u origin 1/fix");
 });
 
 test("buildCommands: empty or invalid input produces empty commands", () => {

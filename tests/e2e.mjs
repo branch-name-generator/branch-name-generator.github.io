@@ -46,7 +46,7 @@ await page.waitForFunction(() => document.querySelector("#issue-name").value !==
 assert.equal(await page.inputValue("#issue-number"), "1234");
 assert.equal(await page.inputValue("#issue-name"), "Fix login bug");
 assert.equal(await page.inputValue("#branch-output"), "1234/fix-login-bug");
-assert.equal(await page.textContent("#cmd-all"), "git switch main && git pull && git switch -c 1234/fix-login-bug && git commit -m '1234 Fix login bug' --allow-empty");
+assert.equal(await page.textContent("#cmd-all"), "git switch main && git pull && git switch -c 1234/fix-login-bug && git commit -m '1234 Fix login bug' --allow-empty && git push -u origin 1234/fix-login-bug");
 
 // Base branch: master, then custom; both persist across reload.
 await page.check('input[name="base"][value="master"]');
