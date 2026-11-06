@@ -1,0 +1,5 @@
+{
+  "name": "branch-name-generator",
+  "private": true,
+  "type": "module"
+}

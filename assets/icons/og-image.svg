@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#0d1117"/>
+  <rect x="0" y="0" width="1200" height="8" fill="#238636"/>
+
+  <!-- logo -->
+  <g transform="translate(72 64) scale(1.75)">
+    <rect width="64" height="64" rx="14" fill="#238636"/>
+    <g fill="#238636" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 18v28M44 24c0 10-8 14-22 16" fill="none"/>
+      <circle cx="22" cy="14" r="6"/>
+      <circle cx="22" cy="50" r="6"/>
+      <circle cx="44" cy="20" r="6"/>
+    </g>
+  </g>
+  <text x="212" y="118" font-family="DejaVu Sans, sans-serif" font-size="60" font-weight="700" fill="#e6edf3">Git Branch Name</text>
+  <text x="212" y="184" font-family="DejaVu Sans, sans-serif" font-size="60" font-weight="700" fill="#e6edf3">Generator</text>
+  <text x="72" y="262" font-family="DejaVu Sans, sans-serif" font-size="30" fill="#9198a1">Issue number + title → valid branch name and git commands</text>
+
+  <!-- terminal card -->
+  <rect x="72" y="310" width="1056" height="244" rx="12" fill="#151b23" stroke="#3d444d" stroke-width="2"/>
+  <circle cx="108" cy="346" r="8" fill="#ff5f57"/>
+  <circle cx="136" cy="346" r="8" fill="#febc2e"/>
+  <circle cx="164" cy="346" r="8" fill="#28c840"/>
+  <g font-family="DejaVu Sans Mono, monospace" font-size="30">
+    <text x="108" y="418" fill="#9198a1">Issue</text>
+    <text x="236" y="418" fill="#e6edf3">1234 Fix login bug</text>
+    <text x="108" y="478" fill="#3fb950">$</text>
+    <text x="144" y="478" fill="#e6edf3">git switch -c </text>
+    <text x="396" y="478" fill="#58a6ff">1234/fix-login-bug</text>
+    <text x="108" y="528" fill="#9198a1" font-size="24">git commit -m '1234 Fix login bug' --allow-empty</text>
+  </g>
+</svg>
